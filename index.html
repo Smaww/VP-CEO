@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تقرير أحمد سامي اليومي</title>
+  
+  <!-- خط كايرو -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f3f5f7;
+      margin: 0;
+      padding: 30px;
+      color: #222;
+      text-align: right;
+    }
+
+    /* 🌟 استايل الجدول داخل الصفحة */
+.metrics {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 15px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.metrics th {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.metrics td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+  background: #fafafa;
+  transition: background 0.2s;
+}
+
+.metrics tr:hover td {
+  background: #f0f7ff;
+}
+
+.metric-label {
+  font-weight: 600;
+  color: #222;
+  background: #f8f9fa;
+}
+
+.table-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.table-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0,123,255,0.4);
+  outline: none;
+  background: #fff;
+}
+
+.metrics tr:last-child td {
+  border-bottom: none;
+}
+
+    section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 24px 28px;
+      max-width: 950px;
+      margin: auto;
+      transition: 0.3s;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #111;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    small {
+      color: #777;
+      font-size: 14px;
+    }
+
+    fieldset {
+      border: 1px solid #e2e2e2;
+      padding: 14px;
+      margin: 18px 0;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+
+    legend {
+      padding: 0 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 6px;
+      font-family: "Cairo", sans-serif;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .notes-box {
+      display: none;
+      margin-top: 10px;
+      background: #fefefe;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .confirm-box {
+      margin: 14px 0;
+      background: #f8f9fa;
+      padding: 10px 12px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: "Cairo", sans-serif;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .btn-print {
+      background: #28a745;
+    }
+
+    .btn-print:hover {
+      background: #1e7e34;
+    }
+
+    .save-message {
+      text-align: center;
+      color: #28a745;
+      font-weight: bold;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* جدول التحليل */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    td {
+      padding: 8px 10px;
+    }
+
+    /* تحسين للطباعة */
+    @media print {
+      body {
+        background: #fff;
+      }
+      .btns, .save-message {
+        display: none !important;
+      }
+      section {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section>
+  <h3>🧾 قائمة مهام إيمان الحربي (مديرة متجر أوشن / VP)  — التقرير اليومي</h3>
+  <small>أشر فقط على البنود التي أنجزتها بنفسك اليوم.</small>
+
+  <!-- تاريخ التقرير -->
+  <div style="margin:16px 0">
+    <label for="reportDate">📅 تاريخ التقرير</label>
+    <input id="reportDate" name="report_date" type="date" />
+  </div>
+
+
+
+  <!-- المبيعات والأداء -->
+  <fieldset>
+    <legend>المبيعات والأداء</legend>
+<label><input type="checkbox"> راجعت تقرير المبيعات اليومي في النظام</label>
+<label><input type="checkbox"> تابعت تحقيق أهداف المبيعات اليومية</label>
+<label><input type="checkbox"> راجعت العروض الحالية وتفاعل العملاء معها</label>
+<label><input type="checkbox"> تأكدت من تحديث المنتجات والأرصدة في المنصة</label>
+
+
+    <label style="margin-top:12px;"><input type="checkbox" class="toggle-notes"> إضافة ملاحظات عامة لهذا القسم</label>
+    <div class="notes-box"><textarea placeholder="أدخل ملاحظات هذا القسم..."></textarea></div>
+  </fieldset>
+
+  <!-- خدمة العملاء -->
+  <fieldset>
+    <legend >خدمة العملاء </legend>
+<label><input type="checkbox"> راجعت طلبات الدعم أو الشكاوى اليومية</label>
+<label><input type="checkbox"> تابعت أداء موظفي خدمة العملاء (السرعة + جودة الرد)</label>
+<label><input type="checkbox"> تم حل جميع التذاكر المعلقة أو تم تصعيدها للمدير العام</label>
+
+
+    <label style="margin-top:12px;"><input type="checkbox" class="toggle-notes"> إضافة ملاحظات عامة لهذا القسم</label>
+    <div class="notes-box"><textarea placeholder="أدخل ملاحظات هذا القسم..."></textarea></div>
+  </fieldset>
+
+  <!-- إدارة الفريق والتشغيل -->
+  <fieldset>
+    <legend>إدارة الفريق والتشغيل</legend>
+<label><input type="checkbox"> تابعت حضور وانضباط الموظفين في الشفتات</label>
+<label><input type="checkbox"> راجعت إنجاز المهام اليومية للفريق</label>
+<label><input type="checkbox"> رفعت أي ملاحظات تشغيلية تحتاج تدخل إداري</label>
+<label><input type="checkbox"> تم التنسيق مع الرئيس التنفيذي حول النقاط المهمة اليوم</label>
+
+
+    <label style="margin-top:12px;"><input type="checkbox" class="toggle-notes"> إضافة ملاحظات عامة لهذا القسم</label>
+    <div class="notes-box"><textarea placeholder="أدخل ملاحظات هذا القسم..."></textarea></div>
+  </fieldset>
+
+  <!-- التقارير الإدارية -->
+  <fieldset>
+    <legend>العمليات والموردين</legend>
+<label><input type="checkbox"> تابعت توافر الرصيد لدى الموردين (HAWA - SADA - Party Star)</label>
+<label><input type="checkbox"> تأكدت من عمل التكاملات (API) بشكل سليم</label>
+<label><input type="checkbox"> تم الإبلاغ عن أي تأخير أو خلل في الشحن أو الطلبات</label>
+
+
+    <label style="margin-top:12px;"><input type="checkbox" class="toggle-notes"> إضافة ملاحظات عامة لهذا القسم</label>
+    <div class="notes-box"><textarea placeholder="أدخل ملاحظات هذا القسم..."></textarea></div>
+  </fieldset>
+
+  <!-- خطة عمل الغد -->
+  <fieldset>
+    <legend>خطة عمل الغد</legend>
+    <label><input type="checkbox" id="toggleTomorrowPlan"> أريد كتابة خطة عمل الغد</label>
+    <div class="notes-box" id="tomorrowPlanBox"><textarea placeholder="اكتب خطة عمل الغد بالتفصيل..."></textarea></div>
+  </fieldset>
+ <fieldset>
+
+       <legend>مؤشرات سريعة (مقاييس اليوم)</legend>
+
+<table class="metrics" aria-label="مقاييس اليوم">
+  <thead>
+    <tr>
+      <th style="width:38%">المؤشر</th>
+      <th style="width:18%">القيمة</th>
+      <th>الملاحظات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="metric-label">👥 انضباط الفريق في الشفتات (%)</td>
+      <td><input id="metric_team_attendance_value" class="table-input visible" type="text" placeholder="مثال: ‎98%"></td>
+      <td><input id="metric_team_attendance_notes" class="table-input visible" type="text" placeholder="مثال: ‎حضور كامل اليوم"></td>
+    </tr>
+
+    <tr>
+      <td class="metric-label">🎧 معدل سرعة استجابة خدمة العملاء (دقائق)</td>
+      <td><input id="metric_support_speed_value" class="table-input visible" type="text" placeholder="مثال: ‎3.5"></td>
+      <td><input id="metric_support_speed_notes" class="table-input visible" type="text" placeholder="مثال: ‎الرد الأول خلال 3.5 دقائق"></td>
+    </tr>
+
+    <tr>
+      <td class="metric-label">💬 عدد القضايا / الشكاوى المتابعة والمغلقة</td>
+      <td><input id="metric_tickets_closed_value" class="table-input visible" type="text" placeholder="مثال: ‎27"></td>
+      <td><input id="metric_tickets_closed_notes" class="table-input visible" type="text" placeholder="مثال: ‎تم إغلاق جميع التذاكر اليوم"></td>
+    </tr>
+
+    <tr>
+      <td class="metric-label">🧾 نسبة رضا العملاء (%)</td>
+      <td><input id="metric_customer_satisfaction_value" class="table-input visible" type="text" placeholder="مثال: ‎94%"></td>
+      <td><input id="metric_customer_satisfaction_notes" class="table-input visible" type="text" placeholder="مثال: ‎من تقييمات العملاء اليوم"></td>
+    </tr>
+
+    <tr>
+      <td class="metric-label">🔄 مدى الالتزام بالمهام اليومية للفريق (%)</td>
+      <td><input id="metric_task_completion_value" class="table-input visible" type="text" placeholder="مثال: ‎100%"></td>
+      <td><input id="metric_task_completion_notes" class="table-input visible" type="text" placeholder="مثال: ‎تم تنفيذ جميع المهام المقررة"></td>
+    </tr>
+
+    <tr>
+      <td class="metric-label">🧠 عدد الاجتماعات الداخلية أو مراجعات الأداء</td>
+      <td><input id="metric_meetings_count_value" class="table-input visible" type="text" placeholder="مثال: ‎1"></td>
+      <td><input id="metric_meetings_count_notes" class="table-input visible" type="text" placeholder="مثال: ‎اجتماع لمراجعة التذاكر والمهام"></td>
+    </tr>
+  </tbody>
+</table>
+
+  <!-- تأكيد -->
+  <div class="confirm-box">
+    <label><input type="checkbox"> أؤكد أن البنود المؤشرة تمت مراجعتي شخصيًا اليوم.</label>
+  </div>
+
+  <!-- الأزرار -->
+  <div class="btns">
+    <button class="btn-print" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+  </div>
+
+</section>
+
+<script>
+  // تعبئة التاريخ التلقائي
+  const dateInput = document.getElementById('reportDate');
+  const today = new Date();
+  dateInput.value = today.toISOString().split('T')[0];
+
+  // إظهار مربعات الملاحظات عند تفعيل CheckBox
+  document.querySelectorAll('.toggle-notes').forEach(chk => {
+    chk.addEventListener('change', function() {
+      const box = this.closest('fieldset').querySelector('.notes-box');
+      box.style.display = this.checked ? 'block' : 'none';
+    });
+  });
+
+  // خطة عمل الغد
+  const toggleTomorrow = document.getElementById('toggleTomorrowPlan');
+  const tomorrowBox = document.getElementById('tomorrowPlanBox');
+  toggleTomorrow.addEventListener('change', function() {
+    tomorrowBox.style.display = this.checked ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>
