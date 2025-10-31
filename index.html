@@ -9,42 +9,168 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: "Cairo", sans-serif;
-      background: #f3f5f7;
-      margin: 0;
-      padding: 30px;
-      color: #222;
-      text-align: right;
-    }
+   /* ===============================
+   🌤️ الألوان والقيم العامة
+=============================== */
+:root {
+  --primary: #3b82f6; /* أزرق فاتح */
+  --primary-dark: #2563eb;
+  --success: #22c55e; /* أخضر فاتح */
+  --bg: #f9fafb; /* خلفية فاتحة ناعمة */
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --radius: 12px;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
 
-    /* 🌟 استايل الجدول داخل الصفحة */
-.metrics {
+body {
+  font-family: "Cairo", sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 24px;
+  color: var(--text);
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ===============================
+   🧾 القسم الرئيسي
+=============================== */
+section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  max-width: 950px;
+  margin: auto;
+  transition: 0.3s ease;
+}
+
+h3 {
+  margin-top: 0;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+small {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ===============================
+   🗂️ مجموعات الحقول
+=============================== */
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 24px 0;
+  background: #fcfcfd;
+  transition: border-color 0.2s ease;
+}
+
+fieldset:hover {
+  border-color: var(--primary);
+}
+
+legend {
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  padding: 0 8px;
+}
+
+/* ===============================
+   🏷️ الوسوم والعناصر
+=============================== */
+label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+input[type="checkbox"] {
+  margin-left: 6px;
+}
+
+/* ===============================
+   ✍️ الحقول النصية
+=============================== */
+input[type="date"],
+textarea,
+.table-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-family: "Cairo", sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+input[type="date"]:focus,
+textarea:focus,
+.table-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 4px rgba(59, 130, 246, 0.3);
+  outline: none;
+  background: #ffffff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.6;
+}
+
+.notes-box {
+  display: none;
+  margin-top: 12px;
+  background: #fefefe;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* ===============================
+   📊 الجداول والمقاييس
+=============================== */
+table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
-  font-size: 15px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
 }
 
-.metrics th {
-  background: linear-gradient(90deg, #007bff, #0056b3);
+th, td {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+}
+
+th {
+  background: var(--primary);
   color: #fff;
   text-align: center;
   font-weight: 600;
-  padding: 10px;
-  font-size: 15px;
 }
 
-.metrics td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #e5e7eb;
-  vertical-align: middle;
+td {
   background: #fafafa;
-  transition: background 0.2s;
+}
+
+.metrics {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--surface);
 }
 
 .metrics tr:hover td {
@@ -53,188 +179,159 @@
 
 .metric-label {
   font-weight: 600;
-  color: #222;
-  background: #f8f9fa;
+  color: var(--text);
+  background: #f5f6f8;
 }
 
-.table-input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #ccc;
+/* ===============================
+   ✅ صندوق التأكيد
+=============================== */
+.confirm-box {
+  margin: 18px 0;
+  background: #f9fafb;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
   border-radius: 8px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ===============================
+   🔘 الأزرار
+=============================== */
+.btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 26px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
   font-family: "Cairo", sans-serif;
-  font-size: 14px;
-  transition: all 0.25s ease;
-  background: #fff;
-  box-sizing: border-box;
 }
 
-.table-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 4px rgba(0,123,255,0.4);
-  outline: none;
-  background: #fff;
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
-.metrics tr:last-child td {
-  border-bottom: none;
+.btn-print {
+  background: var(--success);
 }
 
-    section {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      padding: 24px 28px;
-      max-width: 950px;
-      margin: auto;
-      transition: 0.3s;
-    }
+.btn-print:hover {
+  background: #15803d;
+}
 
-    h3 {
-      margin-top: 0;
-      color: #111;
-      font-weight: 700;
-      font-size: 22px;
-    }
+/* ===============================
+   💬 رسالة الحفظ
+=============================== */
+.save-message {
+  text-align: center;
+  color: var(--success);
+  font-weight: 600;
+  margin-top: 15px;
+  display: none;
+}
 
-    small {
-      color: #777;
-      font-size: 14px;
-    }
+/* ===============================
+   📱 التجاوب مع جميع الشاشات
+=============================== */
+@media (max-width: 900px) {
+  section {
+    padding: 20px;
+  }
 
-    fieldset {
-      border: 1px solid #e2e2e2;
-      padding: 14px;
-      margin: 18px 0;
-      border-radius: 10px;
-      background: #fafafa;
-    }
+  fieldset {
+    padding: 16px;
+  }
+}
 
-    legend {
-      padding: 0 8px;
-      font-weight: 600;
-      color: #333;
-    }
+@media (max-width: 700px) {
+  h3 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-      font-size: 15px;
-    }
+  small {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-    input[type="date"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-top: 6px;
-      font-family: "Cairo", sans-serif;
-      font-size: 15px;
-    }
+  .metrics th,
+  .metrics td {
+    font-size: 13px;
+    padding: 8px;
+  }
 
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
+  button {
+    width: 100%;
+  }
 
-    .notes-box {
-      display: none;
-      margin-top: 10px;
-      background: #fefefe;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-    }
+  .btns {
+    flex-direction: column;
+  }
 
-    .confirm-box {
-      margin: 14px 0;
-      background: #f8f9fa;
-      padding: 10px 12px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      font-weight: 600;
-    }
+  textarea,
+  input[type="date"],
+  .table-input {
+    font-size: 14px;
+  }
+}
 
-    .btns {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
-    }
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
 
-    button {
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 24px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-family: "Cairo", sans-serif;
-    }
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
 
-    button:hover {
-      background: #0056b3;
-    }
+  fieldset {
+    margin: 16px 0;
+    padding: 12px;
+  }
 
-    .btn-print {
-      background: #28a745;
-    }
+  legend {
+    font-size: 0.95rem;
+  }
 
-    .btn-print:hover {
-      background: #1e7e34;
-    }
+  label {
+    font-size: 0.9rem;
+  }
+}
 
-    .save-message {
-      text-align: center;
-      color: #28a745;
-      font-weight: bold;
-      margin-top: 15px;
-      display: none;
-    }
+/* ===============================
+   🖨️ الطباعة
+=============================== */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+  .btns, .save-message {
+    display: none !important;
+  }
+  section {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+}
 
-    /* جدول التحليل */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      margin-bottom: 25px;
-      font-size: 15px;
-    }
-
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #007bff;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-
-    td {
-      padding: 8px 10px;
-    }
-
-    /* تحسين للطباعة */
-    @media print {
-      body {
-        background: #fff;
-      }
-      .btns, .save-message {
-        display: none !important;
-      }
-      section {
-        box-shadow: none;
-        border: none;
-        margin: 0;
-        padding: 0;
-      }
-    }
   </style>
 </head>
 
@@ -393,6 +490,7 @@
 
 </body>
 </html>
+
 
 
 
